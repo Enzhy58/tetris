@@ -1,4 +1,4 @@
-import { PLAYFIELD_COLUMNS, PLAYFIELD_ROWS } from "./utilities.js";
+import { PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, TETROMINO_NAMES, TETROMINOES, getRandomElement } from "./utilities.js";
 
 export class Tetris {
     constructor() {
@@ -20,5 +20,16 @@ export class Tetris {
     generateTetromino() {
         const name = getRandomElement(TETROMINO_NAMES);
         const matrix = TETROMINOES[name];
+
+        const column = PLAYFIELD_COLUMNS / 2 - Math.floor(matrix.length / 2);
+        // const row = -2;
+        const row = 3;
+
+        this.tetromino = {
+            name,
+            matrix,
+            row,
+            column
+        }
     }
 }

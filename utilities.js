@@ -34,7 +34,7 @@ export const TETROMINOES = {
     ],
     'T': [
         [0, 1, 0],
-        [0, 1, 1],
+        [1, 1, 1],
         [0, 0, 0]
     ]
 }
@@ -42,4 +42,8 @@ export const TETROMINOES = {
 export function getRandomElement(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
+}
+
+export function convertPositionToIndex(row, column) {
+    return row * PLAYFIELD_COLUMNS + column;
 }
