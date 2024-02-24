@@ -14,6 +14,9 @@ function initKeydown() {
 
 function onKeydown(event) {
     switch (event.key) {
+        case 'ArrowUp':
+            rotate();
+            break;
         case 'ArrowDown':
             moveDown();
             break;
@@ -40,6 +43,11 @@ function moveLeft() {
 
 function moveRight() {
     tetris.moveTetrominoRight();
+    draw();
+}
+
+function rotate() {
+    tetris.rotateTetromino();
     draw();
 }
 

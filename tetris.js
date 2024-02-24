@@ -1,4 +1,4 @@
-import { PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, TETROMINO_NAMES, TETROMINOES, getRandomElement } from "./utilities.js";
+import { PLAYFIELD_COLUMNS, PLAYFIELD_ROWS, TETROMINO_NAMES, TETROMINOES, getRandomElement, rotateMatrix } from "./utilities.js";
 
 export class Tetris {
     constructor() {
@@ -43,5 +43,10 @@ export class Tetris {
 
     moveTetrominoRight() {
         this.tetromino.column += 1;
+    }
+
+    rotateTetromino() {
+        const rotatedMatrix = rotateMatrix(this.tetromino.matrix);
+        this.tetromino.matrix = rotatedMatrix;
     }
 }
