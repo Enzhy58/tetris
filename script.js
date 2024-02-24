@@ -73,6 +73,7 @@ function draw() {
     cells.forEach(cell => cell.removeAttribute('class'));
     drawPlayfield();
     drawTetromino();
+    drawGhostTetromino();
 }
 
 function drawPlayfield() {
@@ -95,6 +96,18 @@ function drawTetromino() {
             if (tetris.tetromino.row + row < 0) continue;
             const cellIndex = convertPositionToIndex(tetris.tetromino.row + row, tetris.tetromino.column + column);
             cells[cellIndex].classList.add(name);
+        }
+    }
+}
+
+function drawGhostTetromino() {
+    const tetrominoMatrixSize = tetris.tetromino.matrix.length;
+    for (let row = 0; row < tetrominoMatrixSize; row++) {
+        for (let column = 0; column < tetrominoMatrixSize; column++) {
+            if (!tetris.tetromino.matrix[row][column]) continue;
+            if (tetris.tetromino.ghostRow + row < 0) continue;
+            const cellIndex = convertPositionToIndex(tetris.tetromino.ghostRow + row, tetris.tetromino.ghostColumn + column);
+            cells[cellIndex].classList.add('ghost');
         }
     }
 }

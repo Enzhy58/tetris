@@ -30,8 +30,12 @@ export class Tetris {
             name,
             matrix,
             row,
-            column
+            column,
+            ghostColumn: column,
+            ghostRow: row
         }
+
+        this.calculateGhostPosition();
     }
 
     moveTetrominoDown() {
@@ -135,5 +139,16 @@ export class Tetris {
             this.playfield[row] = this.playfield[row - 1];
         }
         this.playfield[0] = new Array(PLAYFIELD_COLUMNS).fill(0);
+    }
+
+    calculateGhostPosition() {
+        const tetrominoRow = this.tetromino.row;
+        this.tetromino.row++;
+        while (this.isValid()) {
+            this.tetromino.row++;
+        }
+        this.tetromino.ghostRow = this.tetromino.row - 1;
+        this.tetromino.ghostColumn = this.tetromino.column;
+        this.tetromino.row = tetrominoRow;
     }
 }
